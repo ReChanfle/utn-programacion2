@@ -12,52 +12,71 @@ using namespace std;
 //tener en cuenta que el vector enviado como argumento no debe ser modificado.
 
 
-void OrdenarVector::orderAsc()
+void OrdenarVector::orderAsc(int *vec,int size)
 {
 
-    for (int i = 0; i < 10 - 1; i++) {
-        for (int j = 0; j < 10 - i - 1; j++) {
-            if (_vecInt[j] > _vecInt[j + 1]) {
-                int temp = _vecInt[j];
-                _vecInt[j] = _vecInt[j + 1];
-                _vecInt[j + 1] = temp;
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (vec[j] > vec[j + 1]) {
+                int temp = vec[j];
+                vec[j] = vec[j + 1];
+                vec[j + 1] = temp;
             }
         }
     }
 
 }
 
-void OrdenarVector::orderDesc()
+void OrdenarVector::orderDesc(int *vec, int size)
 {
 
-    for (int i = 0; i < 10 - 1; i++) {
-        for (int j = 0; j < 10 - i - 1; j++) {
-            if (_vecInt[j] < _vecInt[j + 1]) {
-                int temp = _vecInt[j];
-                _vecInt[j] = _vecInt[j + 1];
-                _vecInt[j + 1] = temp;
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (vec[j] < vec[j + 1]) {
+                int temp = vec[j];
+                vec[j] = vec[j + 1];
+                vec[j + 1] = temp;
             }
         }
     }
 }
 
-void OrdenarVector::show()
+void OrdenarVector::show(int *vec, int size)
 {
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < size; i++)
     {
-        cout << " " << _vecInt[i] << " ";
+        cout << " " << vec[i] << " ";
     }
 }
 
 
 int main()
 {
-    int vector[10]{1,5,4,3,1,7,8,4,9,4};
-    OrdenarVector vecInt{vector};
+    int size = 0;
+    cout << "Ingrese tamano de vector: " << endl;
+    cin >> size;
 
+    int* _vecInt = new int[size];
 
-    vecInt.orderAsc();
-    vecInt.show();
+    if (_vecInt == nullptr)
+        exit(1);
+
+    for (int i = 0; i < size; i++)
+    {
+        int number = 0;
+        cout << "Ingrese el numero que quiere guardar: " << endl;
+        cin >> number;
+        _vecInt[i] = number;
+
+        cout <<  _vecInt[i] << endl;
+    }
+
+    OrdenarVector ordenarVec{};
+
+    ordenarVec.orderAsc(_vecInt, size);
+    ordenarVec.show(_vecInt, size);
+
+    delete[] _vecInt;
 
 
     return 0;

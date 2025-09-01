@@ -7,20 +7,12 @@
 
 class OrdenarVector
 {
-    int _vecInt[10] = {};
 
 public:
-    explicit OrdenarVector(int v[10])
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            _vecInt[i] = v[i];
-        }
-    }
 
-    void orderAsc();
-    void orderDesc();
-    void show();
+    void orderAsc(int *vec, int size);
+    void orderDesc(int *vec, int size);
+    void show(int *vec, int size);
 };
 
 #endif //OrdenarVector_H
